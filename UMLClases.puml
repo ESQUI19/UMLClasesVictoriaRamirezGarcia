@@ -19,6 +19,7 @@ class Event{
 
     assign(l : Location) : void
 }
+
 class Conference{
     max_attendees : Integer
 }
@@ -28,18 +29,20 @@ class Location{
     address : String
 }
 
-AAUOC o-- Person
-AAUOC o-- Event
-AAUOC o-- Location
+
+AAUOC o-- "0..*" Person
+AAUOC o-- "0..*" Event
+AAUOC o-- "0..*" Location
 Event <|-- BoardMeeting
 Event <|-- Conference
 Member <|-- BoardMember
 Person <|-- Member
 
-Location --Event : isLocatedIn
-Event -- Member : attendsTo
-Conference -- Person :attendsTo
-BoardMember -- BoardMeeting : attendsTo
+
+Location "1" -- "0.*" Event : isLocatedIn
+Event "0.*" -- "0.*" Member : attendsTo
+Conference "0.*" -- "0.*" Person :attendsTo
+BoardMember "0.*" -- "0.*" BoardMeeting : attendsTo
 
 
 @enduml
