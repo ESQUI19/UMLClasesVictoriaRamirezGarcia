@@ -16,9 +16,10 @@ Event <|-- Conference
 Member <|-- BoardMember
 Person <|-- Member
 
-
-
-
+Location --Event
+Event -- Member
+Conference -- Person
+BoardMember -- BoardMeeting
 
 
 @enduml
